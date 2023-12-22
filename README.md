@@ -20,8 +20,8 @@ The plugin contains the bare minimum code to make it work. I don't know how much
 ## Usage
 
 - Follow install instructions
-- Open PowerToys Run
 - Place some text files in `%localappdata%\Boilerplate`
+- Open PowerToys Run
 - Type `##`, optionally followed by search for filename
 - Press enter to copy the selected file's content to clipboard
 
@@ -29,7 +29,7 @@ The plugin contains the bare minimum code to make it work. I don't know how much
 
 Use one of the releases and copy the archive content to `%localappdata\PowerToys\RunPlugins\BoilerplateText`.
 
-Please note, if you are updating, and if you have just PowerToys Run, you may have to exit PowerToys because otherwise the files may be in use.
+Please note, if you are updating, and if you have just used PowerToys Run, you may have to exit PowerToys because otherwise the files may be in use.
 
 Or you could follow the build instructions, build with Release configuration and copy the plugin from the release folder.
 
