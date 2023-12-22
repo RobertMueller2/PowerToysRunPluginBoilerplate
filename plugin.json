@@ -1,0 +1,13 @@
+{
+  "ID": "6c631b4e-3d6d-4ff3-91df-7a33f94a4ef1",
+  "ActionKeyword": "##",
+  "IsGlobal": false,
+  "Name": "BoilerplateText",
+  "Author": "RobertMueller2",
+  "Version": "0.0.1",
+  "Language": "csharp",
+  "Website": "https://github.com/RobertMueller2",
+  "IcoPathDark": "Images\\BoilerplateDark.png",
+  "IcoPathLight": "Images\\BoilerplateLight.png",
+  "ExecuteFileName": "Community.PowerToys.Run.Plugin.BoilerplateText.dll"
+}
