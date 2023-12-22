@@ -40,7 +40,7 @@ Before you do this, make sure you have sufficient disk space. I had to resize my
 - Clone [PowerToys](https://github.com/microsoft/PowerToys)
 - if you're worried about working with upstream changes, you could fork it and rebase as needed
 - `cd <powertoys repository>\src\modules\launcher\Plugins`
-- `git submodule add https://github.com/RobertMueller2/PowerToysRunPluginBoilerplate.git`
+- `git submodule add https://github.com/RobertMueller2/PowerToysRunPluginBoilerplate.git Community.PowerToys.Run.Plugin.BoilerplateText`
 - Add the newly added submodules .csproj file as project to the solution
 - if you want to try it, you could build the solution with debug config and launch the PowerLauncher subproject, it should automatically load the Boilerplate plugin. Otherwise, build release config.
 
