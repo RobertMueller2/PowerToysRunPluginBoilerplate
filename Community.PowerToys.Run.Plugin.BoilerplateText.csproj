@@ -38,8 +38,19 @@
     </ProjectReference>
   </ItemGroup>
 
+  <Target Name="CopyPowerToysLicenseAndNotice" BeforeTargets="Build">
+    <Copy SourceFiles="../../../../../LICENSE" DestinationFiles="$(OutputPath)/LICENSE_Powertoys"/>
+    <Copy SourceFiles="../../../../../NOTICE.md" DestinationFiles="$(OutputPath)/NOTICE_Powertoys.md" />
+  </Target>
+  
   <ItemGroup>
     <None Include="plugin.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="NOTICE.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
