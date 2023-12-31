@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <Target Name="CopyPowerToysLicenseAndNotice" BeforeTargets="Build">
-    <Copy SourceFiles="../../../../../LICENSE" DestinationFiles="$(OutputPath)/LICENSE_Powertoys"/>
+    <Copy SourceFiles="../../../../../LICENSE" DestinationFiles="$(OutputPath)/LICENSE_Powertoys" />
     <Copy SourceFiles="../../../../../NOTICE.md" DestinationFiles="$(OutputPath)/NOTICE_Powertoys.md" />
   </Target>
   
@@ -63,5 +63,49 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <UsingTask TaskName="CreateReleaseArchive" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildBinPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <OutputFilename ParameterType="System.String" Required="true" />
+      <ReleaseOutputDir ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.IO.Compression" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+      Log.LogMessageFromText($"Creating release archive {OutputFilename} from {ReleaseOutputDir}", MessageImportance.High);
+      try
+      {
+        Uri releaseDirUri = new Uri(ReleaseOutputDir);
+        using (Stream zipStream = new FileStream(Path.GetFullPath(OutputFilename), FileMode.Create, FileAccess.Write))
+        using (ZipArchive archive = new ZipArchive(zipStream, ZipArchiveMode.Create))
+        {
+            foreach (var f in Directory.GetFiles(ReleaseOutputDir, "*", SearchOption.AllDirectories))
+            {
+                Uri fileUri = new Uri(f);
+                string relativePath = $"BoilerplateText{Path.DirectorySeparatorChar}{releaseDirUri.MakeRelativeUri(fileUri).ToString().Replace('/', Path.DirectorySeparatorChar)}";
+                Log.LogMessageFromText($"Adding {relativePath}", MessageImportance.Low);
+                using (Stream fileStream = new FileStream(f, FileMode.Open, FileAccess.Read))
+                using (Stream fileStreamInZip = archive.CreateEntry(relativePath).Open())
+                    fileStream.CopyTo(fileStreamInZip);
+            }
+        }
+        return true;
+      }
+      catch (Exception ex)
+      {
+        Log.LogErrorFromException(ex);
+        return false;
+      }
+    ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="ReleaseArchive" Condition="$(Configuration) == 'Release'" AfterTargets="Build">
+    <Message Text="AfterBuild (Release)" Importance="high" />
+    <CreateReleaseArchive OutputFilename="$(MSBuildProjectDirectory)\Releases\BoilerplateText-$(Version).zip" ReleaseOutputDir="$(MSBuildProjectDirectory)\$(OutputPath)" />
+  </Target>
 
 </Project>
