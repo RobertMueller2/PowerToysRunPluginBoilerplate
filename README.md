@@ -27,7 +27,7 @@ The plugin contains the bare minimum code to make it work. I don't know how much
 
 ## Install
 
-Use one of the releases and copy the archive content to `%localappdata\PowerToys\RunPlugins\BoilerplateText`.
+Use one of the releases and copy the archive content to `%localappdata%\PowerToys\RunPlugins`. this should create a subdirectory `BoilerplateText`.
 
 Please note, if you are updating, and if you have just used PowerToys Run, you may have to exit PowerToys because otherwise the files may be in use.
 
