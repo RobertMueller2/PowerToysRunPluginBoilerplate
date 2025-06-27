@@ -1,3 +1,7 @@
+# Archive Notice
+
+Update 2025-06-27: This plugin is now archived. Time permitting, I'll look into a command palette plugin for the same purpose in the future.
+
 # Boilerplate plugin for PowerToys Run
 
 This is a plugin for [PowerToys Run](https://learn.microsoft.com/windows/powertoys/run) that allows to copy text from text files located in `%localappdata%\Boilerplate`. My use case is to provide quick access to frequently used text snippets ("boilerplate"), such as "Best regards, NAME" e.g. for use in emails in order to save some typing.
